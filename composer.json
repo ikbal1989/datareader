@@ -1,12 +1,12 @@
 {
     "name": "ikbal/datareader",
     "description": "read excel or CSV file and return as laravel collection",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Md Ikbal Hossain",
-            "email": "ikbal.official@gmail.com"
+            "email": "md.ikbalhossain@gmail.com"
         }
     ],
     "minimum-stability": "dev",
