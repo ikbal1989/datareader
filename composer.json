@@ -1,0 +1,24 @@
+{
+    "name": "ikbal/datareader",
+    "description": "read excel or CSV file and return as laravel collection",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Md Ikbal Hossain",
+            "email": "md.ikbalhossain@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Ikbal\\Datareader\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ikbal\\Datareader\\": "src"
+        }
+    },
+    "require": {}
+}
