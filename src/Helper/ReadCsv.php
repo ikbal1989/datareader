@@ -6,24 +6,23 @@ use Illuminate\Support\Facades\Log;
 class ReadCsv
 {
 
-    public function read($file_path, $header = false, $seperator = '|', $remove_last = true){
+    public function read($file_path, $header = false, $seperator = ',',$length = 1000, $remove_last = true){
         $file = fopen($file_path, "r");        
+        $first_column_arr = [];
         if($header){
-            $line = str_replace("\n","", strtolower(fgets($file))) ;
-            $first_column_arr = explode($seperator, $line);
+
+            $first_column_arr = fgetcsv($file, $length, $seperator);
             $first_column_arr = array_map(function($item){
-                $string = str_replace(' ', '_', trim($item)); // Replaces all spaces with hyphens.
-                return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+                $string = strtolower(str_replace(' ', '_', trim($item))); // Replaces all spaces with hyphens.
+                return preg_replace('/[^A-Za-z0-9_\-]/', '', $string);
             }, $first_column_arr);
         }
-
         $data_collection = collect();
         $count = 1;
         while(! feof($file)) {
             if($count > 1){
                 try {
-                    $rest_line = str_replace("\n","",fgets($file));
-                    $rest_col_arr = explode($seperator, $rest_line);
+                    $rest_col_arr = fgetcsv($file, $length, $seperator);
                     if($rest_col_arr){
                         if($header){
                             $col_data = $this->mapColumn($first_column_arr, $rest_col_arr);
